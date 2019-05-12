@@ -1,0 +1,332 @@
+._location {
+    .profile-tabs {
+        text-align: left;
+
+        @media (max-width: 768px) {
+            padding: 0 15px;
+        }
+
+        .nav-tabs {
+            border-width: 0 0 1px 0;
+            border-radius: 0;
+            border-color: #eee;
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+
+            li {
+                a {
+                    border-radius: 0;
+                    color: #444;
+                    font-family: $font-regular;
+                    letter-spacing: 1px;
+                    font-weight: 600;
+                    padding: 0px 30px;
+
+                    @media (max-width: 768px) {
+                        padding: 0px 15px;
+                        font-size: 16px;
+                    }
+                }
+
+                &.active,
+                &:hover {
+                    a {
+                        background: transparent;
+                        color: $color01;
+                        border-bottom: 1px solid $color01;
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+
+        .btn-fill {
+            @media (max-width: 768px) {
+                float: left !important;
+                margin: 10px 0;
+            }
+        }
+    }
+
+    ._add-loc {
+        text-align: center;
+        background-color: $color10;
+        padding: 50px 0;
+        border: 1px dashed #cacaca;
+        border-radius: 6px;
+
+        img {
+            margin: 20px 0 45px;
+        }
+    }
+
+    ._loc-view {
+        display: inherit;
+        margin: 0 -23px;
+        float: left;
+        width: 100%;
+        &:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        @media (max-width:992px) {
+            margin: 0px -15px;
+        }
+
+        @media (max-width:768px) {
+            // float: left;
+            // margin: 0px;
+        }
+        @media (max-width:480px) {
+            margin: 0px ;
+        }
+        ._tab-list {
+            text-transform: capitalize;
+            font-size: 15px;
+            thead{
+                tr{
+                    background-color: $pop-bg;
+                    th {
+                        text-align: left !important;
+                        border: none;
+                        color: #788488;
+                    }
+                }
+            }
+            
+            td{
+                padding: 15px;
+                border: none;
+                color: #505155;
+                font-family: $font-bold;
+                border-bottom: 1px solid #eae8ee;   
+                ._list-img {
+                    width: 60px;
+                    overflow: hidden;
+                    height: 60px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 100%;
+                        height: inherit;
+                    }
+                }
+                ._ls-action {
+                    span {
+                    font-size: 16px;
+                    margin: 0 5px;
+                    color: $color01;
+                    cursor: pointer;
+                    width: 20px;
+                    text-align: center;
+                    float: left;
+                    height: 25px;
+                    line-height: 25px;
+                    transition: .2s all;
+                    &.icon-delete-photo{
+                        color: #f00;
+                    }
+                    &:hover{
+                        font-size: 20px;
+                    }
+                }
+            }
+                }
+            }
+        
+
+        // @media  (max-width:768px) {
+        //     margin: auto;
+        // }
+        ._loc-box {
+            width: 20%;
+            position: relative;
+            padding: 0 23px;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+
+            @media (max-width: 1199px) {
+                // width: 15%;
+                padding: 0 15px;
+            }
+
+            @media (max-width:992px) {
+                width: 20%;
+                // margin: 0 15px 25px;
+            }
+
+            @media (max-width:768px) {
+                width: 25%;
+                margin-bottom: 15px;
+            }
+
+            @media (max-width:600px) {
+                width: 50%;
+               
+            }
+
+            @media (max-width:480px) {
+                padding: 0;
+                width: 48%;
+                margin: 0 1% 15px;
+                // margin: 0;
+                ._map{
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+
+            ._box-content {
+                label {
+                    font-family: $font-bold;
+                    word-break: break-word;
+                    @media (max-width:768px) {
+                        font-size: 12px;
+                    }
+                    // @media (max-width:480px) {
+                    //     font-size: 14px;
+                    // }
+                }
+            }
+
+            &:hover {
+                span {
+                    opacity: 1;
+
+                }
+
+                label {
+                    color: $color01;
+                }
+            }
+
+            ._map {
+                max-height: 180px;
+                overflow: hidden;
+                margin-bottom: 15px;
+                border: 1px solid #eee;
+            }
+
+            ._box-content {
+                p {
+                    font-size: 14px;
+                    margin: 0;
+                }
+            }
+
+            span {
+                opacity: 0;
+                position: absolute;
+                top: 6px;
+                right: 30px;
+                cursor: pointer;
+                transition: all .5s;
+                i {
+                    font-size: 15px;
+                    background-color: rgba(0, 0, 0, .5);
+                    color: $white;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 27px;
+                    border: 1px solid $white;
+                    display: table;
+                    margin-bottom: 5px;
+                    &:hover {
+                        background-color: #7a2a90;
+                    }
+                }
+
+            }
+
+        }
+
+        .advt {
+            margin: 50px 0;
+        }
+    }
+
+}
+
+
+
+// add location popup css start
+._add-location {
+    .modal-content {
+        float: left;
+
+        .modal-header {
+            background-color: $popup-heading-bg;
+            padding: 20px 30px 20px;
+
+            h4 {
+                width: 100%;
+                color: $color01;
+            }
+
+            button {
+                span {
+                    color: $color01;
+                }
+
+            }
+        }
+
+        .modal-body {
+            ._search {
+                max-width: 500px;
+                width: 100%;
+                margin: 15px auto;
+
+                input {
+                    background-image: url('#{$imgpath}search.png');
+                    background-repeat: no-repeat;
+                    background-position: 96% center;
+                    padding-right: 45px;
+                    max-width: 100%;
+                }
+            }
+
+            .pin-location {
+                margin: 15px 0 30px;
+                float: left;
+                width: 100%;
+                border-radius: 5px;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            textarea {
+                margin-bottom: 20px;
+                border-radius: 5px;
+
+                &.input-control {
+                    border-color: #ededed;
+
+                    &:focus {
+                        border-color: #7a2a90;
+                    }
+                }
+            }
+
+            .btn-fill {
+                font-size: 18px;
+                font-family: $font-bold;
+                padding: 3px 24px
+            }
+        }
+    }
+}
+
+// add location popup css end

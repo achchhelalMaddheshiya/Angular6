@@ -1,0 +1,152 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<!-- content area start here -->
+<section class="content-area">
+  <!-- top banner start here -->
+  <div class="page-title-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Contact Us</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- top banner end here -->
+
+  <div class="_inpages _contact">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="col-sm-8">
+            <div id="home" class="tab-pane fade in active">
+              <h2>Contact Us </h2>
+              <p>
+                Please contact us if you have any questions, comments or would like to report a user.
+                Please refer to the FAQ page before contacting us.
+              </p>
+              <div class="row">
+
+                <div class="col-md-12">
+                  <div class="row">
+
+                    <form #contactForm="ngForm" (ngSubmit)="(contactForm.valid ) ? contactUs() : submitted = true ">
+
+                      <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Your Name</label>
+
+                          <input type="text" required class="input-control" #name="ngModel" [(ngModel)]="contactUsModel.name"
+                            name="name">
+
+                          <div class="has-error" *ngIf="name.errors && (name.dirty || name.touched || contactForm.submitted)">
+                            <div *ngIf="name.errors.required">
+                              The name is required
+                            </div>
+                          </div>
+
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Enter Email</label>
+                          <input type="text" required class="input-control" email type="email" #email="ngModel"
+                            [(ngModel)]="contactUsModel.email" name="email">
+
+                          <div class="has-error" *ngIf="email.errors && (email.dirty || email.touched || contactForm.submitted)">
+                            <div *ngIf="email.errors.required">
+                              The email is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Subject</label>
+                          <input type="text" required class="input-control" #subject="ngModel" [(ngModel)]="contactUsModel.subject"
+                            name="subject">
+
+                          <div class="has-error" *ngIf="subject.errors && (subject.dirty || subject.touched || contactForm.submitted)">
+                            <div *ngIf="subject.errors.required">
+                              The subject is required
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Your message</label>
+                          <textarea required #message="ngModel" [(ngModel)]="contactUsModel.message" name="message"
+                            placeholder="Type here" class="input-control"></textarea>
+
+
+
+                          <div class="has-error" *ngIf="message.errors && (message.dirty || message.touched || contactForm.submitted)">
+                            <div *ngIf="message.errors.required">
+                              The message is required
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+                      
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label></label>
+
+                          <re-captcha #captcha="ngModel" [(ngModel)]="contactUsModel.captcha" name="captcha" (resolved)="resolved($event)"
+                            required siteKey="6Lf8H38UAAAAAJqr1mDPAHjfXfqA5oLDf0eG6Yjl"></re-captcha>
+                          <div class="has-error" *ngIf="captcha.errors && (captcha.dirty || captcha.touched || contactForm.submitted)">
+                            <div *ngIf="captcha.errors.required">
+                              The captcha is required
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+
+
+
+                      <div class="col-xs-12 sb-btn">
+                        <div class="form-group">
+                          <input type="submit" value="Submit" class="btn-fill">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-xs-12 align-center margin-bottom-6x">
+            <div class="adv-dsk">
+                <app-ads-component [slug]="'contact-us'"></app-ads-component>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>
+
+<!-- content area ends  -->

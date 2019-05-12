@@ -1,0 +1,113 @@
+$option-color:           #cbd1d8;
+$checked-option-color:   #40e0d0;
+$option-size:            40px;
+$explosion-distance:     5; // multiplied by $option-size
+$explosion-duration:     0.65s;
+
+$theme-primary:    #8b0304;
+$theme-secondary:  #3a3e4a;
+$theme-tertiary:   #f4f4f4;
+$index-background:   #ffffff;
+$text-color:#ffffff;
+$input-background:#eef1f8;
+$heading-color:#666666;
+$p-tagcolor:#070606;
+$forgot-color:#515691;
+$filter:#363636;
+$star-color:#7ba23f;
+$border-color:#ececec;
+$pop-bg:#f9f9f9;
+
+//web theme color
+$theme-primary: 		#d04548 !default;
+$yellow-color:			#ef9333 !default;
+$gray-color:			#949595 !default;
+$blue-color:			#1462a6 !default;
+$green-color:			#00aa8c !default;
+$button-color:			#63bf49	!default;
+$dark-gray:				#605b59	!default;
+//$text-color:			#ffffff !default;
+$default-color:			#000000 !default;
+
+$white:#ffffff;
+$black:#000;
+
+
+$gray-base:        #666666;
+$gray-darker:      lighten($gray-base, 13.5%); // #222
+$gray-dark:        lighten($gray-base, 20%);   // #333
+$gray:             lighten($gray-base, 33.5%); // #555
+$gray-light:       lighten($gray-base, 46.7%); // #777
+$gray-lighter:     lighten($gray-base, 93.5%); // #eee
+
+
+$brand-twitter:		#1da1f2;
+$brand-facebook:	#3b5998;
+$brand-google-plus:	#dd4b39;
+
+$color01:#7a2a90;
+$color02:#1f1a6b;
+$color03:#07bbcc;
+$color04:#00a7e1;
+$color05:#3b2e5b;
+$color06:#312055; 
+$color07:#9843b0; 
+$color08:#d4a8c9; 
+$color09:#989898; 
+$color10:#fafafa; 
+
+$text-color:#767676;
+$text-field-color:#c4c4c4;
+$text-gray-dark: #343434;
+$light-gray: #f7f7f7;
+
+$v-head-bg:#f8f8f8;
+$v-text-color:#c6c6c6;
+$v-head-color:#737373;
+
+$inner-nav-color:#343434;
+$heading-color:#343434;
+
+$popup-heading-bg:#f3f3f3;
+$popup-close-border:#828282;
+
+
+$footer-bg:#140b28;
+$footer-border-color:#1d1537;
+
+$border-color:#e5e5e5;
+$footer-link-hover: #a7a5ab;
+$hover-color:#853991;
+
+
+// PATH & FONT NAME
+$imgpath: "/assets/images/" !default;
+$primary-font-path: "./assets/fonts" !default;
+$icons-path: "./assets/fonts/font-icon/fonts";
+$icon-font-path: "../node_modules/bootstrap-sass/assets/fonts/bootstrap/" !default;
+//$icon-font-path: "./assets/fonts/bootstrap/" !default;
+$font-bold: 'nexa_boldregular' !default;
+$font-regular: 'nexa_lightregular' !default;
+ 
+
+// FONTS and TEXT STYLE
+$fontnormal      : 16px !default;
+$fontsmall       : 12px !default;
+$lineheight      : 1.5 !default;
+$fontawesome     : FontAwesome !default;
+$spacing         : 5px !default; /**/
+//TRANSITION EFFECT
+$trasition_all   : all 0.3s ease-in-out 0s !default; /**/
+// Display
+$ib              : inline-block !default;
+$b               : block !default;
+$t               : table !default;
+$cell            : table-cell !default;
+$n               : none !default; /**/
+// Margin
+$auto            : auto auto !default;
+$za              : 0 auto !default;
+
+
+
+$grid-float-breakpoint:    992px !default;;

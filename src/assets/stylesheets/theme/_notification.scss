@@ -1,0 +1,103 @@
+.notification-area{
+ ul{
+  padding:0;
+    
+    li{
+         display: block;
+         list-style: none;
+         padding:25px 0;
+         font-size: 0;
+         border-bottom:1px solid #eee;
+
+           @media (max-width:480px){
+                padding:20px 0;
+             }
+
+         .img-box{
+            display: inline-block;
+            vertical-align: middle;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid #eee;
+             @media (max-width:480px){
+                margin-bottom: 10px;
+                width: 45px;
+                height: 45px;
+             }
+         }
+          .details{
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+            
+            
+            //  @media (min-width:480px){
+            //     width: calc(100% - 69px);
+            //     padding-left: 30px;
+            //  }
+             @media (min-width:320px){
+                width: calc(100% - 70px);
+                padding-left: 20px;
+             }
+             .text-details{
+                 display: inline-block;
+                 width:100%;
+                 @media (min-width:992px){
+                        width:80%;
+                    }
+                 h3{
+                   font-size: 15px;
+                   color: #343434;
+                   line-height: 20px;
+                margin-bottom: 5px; 
+                     @media (min-width:480px){
+                        font-size: 20px;
+                    }
+                 }
+
+                 p{
+                  font-size: 14px;
+                  color: #343434;
+                  margin: 0;
+                  @media (min-width:480px){
+                        font-size: 15px;
+                    }
+                 }
+             }
+             .date-time{
+                  display: inline-block;
+                  width: 100%;
+                  padding-top: 10px;
+                    @media (min-width:992px){
+                        width:20%;
+                        text-align: right;
+                        padding-top: 0;
+                    }
+                  span{
+                       font-size: 15px;
+                       color: #919191;
+                  }
+             }
+          } /** details ends **/
+
+    } /** li ends **/
+ }
+
+.adver-wrap {
+  text-align: center;
+  padding: 35px 0 35px;
+  width: 100%;
+  display: block;
+  border-bottom:1px solid #eee;
+  a{
+      display: block;
+      img{
+            max-width: 730px;
+            width: 100%;
+      }
+  }
+}
+
+} /** .notification-area ends **/

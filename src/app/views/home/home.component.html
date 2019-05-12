@@ -1,0 +1,225 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<div class="banner-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="banner-cont">
+          <img src="assets/images/hands.png" alt="Logo">
+          <p>
+            <span>WilloDiary:</span> forward thinking and innovative, taking the latest technology available to bring
+            comfort to people that have lost a loved one, so <span>information and memories can be shared</span> and
+            <span>kept for future generations.</span>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-area">
+          <h4>Sign Up for free on WilloDiary</h4>
+          <form #userForm="ngForm" (ngSubmit)="(userForm.valid && userModel.password == userModel.confirm_password) ? signUp() : '' "
+            novalidate>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input class="input-control" [email]="true" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                type="email" #email="ngModel" [(ngModel)]="userModel.email" name="email" placeholder="Email" required>
+
+              <div class="has-error" *ngIf="email.errors && (email.dirty || email.touched || userForm.submitted)">
+
+                <div *ngIf="email.errors.required">
+                  The email is required
+                </div>
+
+                <div *ngIf="email.errors.pattern">
+                  Please enter a valid email
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" minlength="6" maxlength="15" class="input-control" #password="ngModel" [(ngModel)]="userModel.password"
+                name="password" placeholder="Password" required>
+
+              <div class="has-error" *ngIf="password.errors && (password.dirty || password.touched || userForm.submitted)">
+                <div *ngIf="password.errors.required">
+                  The password is required
+                </div>
+                <div *ngIf="password.errors.minlength">
+                  Minimum 6 characters required
+                </div>
+                <div *ngIf="password.errors.maxlength">
+                  Maximum 15 characters allowed
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label>Confirm Password *</label>
+              <input placeholder="Confirm password" maxlength="15" class="input-control" type="password" name="confirm_password"
+                [(ngModel)]="userModel.confirm_password" required #confirm_password="ngModel">
+
+              <div class="has-error" *ngIf="password.valid == true && (userModel.password != userModel.confirm_password ) && userForm.submitted">
+                Both password should match
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label class="custom-check">I agree to the Terms and Conditions of WilloDiary
+                <input type="checkbox" name="terms" #terms="ngModel" [(ngModel)]="userModel.terms" required>
+                <span class="checkmark"></span>
+              </label>
+
+              <div class="has-error" *ngIf="terms.errors && (terms.dirty || terms.touched || userForm.submitted)">
+                <div *ngIf="terms.errors.required">
+                  Please agree to the terms & conditions
+                </div>
+
+              </div>
+
+
+            </div>
+
+            <div class="form-group">
+              <input type="submit" value="Register" class="btn-fill">
+            </div>
+          </form>
+
+          <span class="or"><span>or</span></span>
+
+          <p class="signin">Already have an account? <a href="javascript:void(0)" routerLink="/login">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- adv star here -->
+<div class="adver-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <app-ads-component [slug]="'home'"></app-ads-component>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- adv ends here -->
+
+<!-- content area start here -->
+<section class="content-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="features">
+          <h1>WilloDiary Features</h1>
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <div class="view view-sixth">
+                <span class="icon-img"><img src="assets/images/icon-01.png" alt=""></span>
+                <h2>Keep Safe</h2>
+                <div class="mask">
+                  <div class="inner">
+                    <p>A fantastic way to honour your precious memories with your family and friends.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="view view-sixth">
+                <span class="icon-img"><img src="assets/images/icon-02.png" alt=""></span>
+                <h2>Personal Stories,
+                  Memories &amp; Fun Times</h2>
+                <div class="mask">
+                  <div class="inner">
+                    <p>A fantastic way to honour your precious memories with your family and friends.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="view view-sixth">
+                <span class="icon-img"><img src="assets/images/icon-03.png" alt=""></span>
+                <h2>Upload Pictures,
+                  Videos &amp; Voice Recording</h2>
+                <div class="mask">
+                  <div class="inner">
+                    <p>A fantastic way to honour your precious memories with your family and friends.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="view view-sixth">
+                <span class="icon-img"><img src="assets/images/icon-04.png" alt=""></span>
+                <h2>Pet's Corner</h2>
+
+                <div class="mask">
+                  <div class="inner">
+                    <p>A fantastic way to honour your precious memories with your family and friends.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="view view-sixth">
+                <span class="icon-img"><img src="assets/images/icon-05.png" alt=""></span>
+                <h2>Secrets &amp; Untolds</h2>
+
+                <div class="mask">
+                  <div class="inner">
+                    <p>A fantastic way to honour your precious memories with your family and friends.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="view view-sixth">
+                <span class="icon-img"><img src="assets/images/icon-06.png" alt=""></span>
+                <h2>Send a Gift</h2>
+
+                <div class="mask">
+                  <div class="inner">
+                    <p>A fantastic way to honour your precious memories with your family and friends.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="view view-sixth">
+                <span class="icon-img"><img src="assets/images/icon-07.png" alt=""></span>
+                <h2>Donate to charity</h2>
+
+                <div class="mask">
+                  <div class="inner">
+                    <p>A fantastic way to honour your precious memories with your family and friends.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="view view-sixth">
+                <span class="icon-img"><img src="assets/images/icon-01.png" alt=""></span>
+                <h2>Diary Column</h2>
+
+                <div class="mask">
+                  <div class="inner">
+                    <p>A fantastic way to honour your precious memories with your family and friends.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <span class="view-more"><a href="#"><i class="icon-plus"></i> View More</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- content area ends  -->

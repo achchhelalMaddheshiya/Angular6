@@ -1,0 +1,174 @@
+<!-- content area start here -->
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<section>
+  <div class="vault-area">
+
+    <!-- top banner start here -->
+    <div class="page-title-wrapper">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Vault</h1>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="_inpages _document">
+      <!-- top banner end here -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12" *ngIf="total === 0 && is_owner || showUploadButton">
+            <div id="home">
+              <h2>{{ folder_data.name }} </h2>
+              <div class="_file-up">
+                <span class="col-xs-12 icon-cloud-upload"></span>
+                <div class="upload-btn-wrapper">
+                  <button class="btn btn-fill">Upload File</button>
+                  <input type="file" name="file" (change)="upload($event)" />
+                </div>
+                <p>Upload Your File or Document here</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-xs-12 advt text-center" *ngIf="total === 0">
+            <app-ads-component [slug]="'folder-detail'"></app-ads-component>
+          </div>
+
+
+          <div class="col-xs-12  _location _grid" *ngIf="total > 0">
+            <div class="_tp-srch">
+              <h2>{{ folder_data.name }}</h2>
+              <div class="_grid-list">
+                <div class="_search">
+                  <input type="text" (keyup)="search($event);" class="input-control" placeholder="Search By Name">
+                </div>
+                <div class="upload-btn-wrapper" *ngIf="is_owner || showUploadButton ">
+                  <a href="javascript:void(0);"><span class="icon-upload-cloud"></span>Upload</a>
+                  <input type="file" name="file" (change)="upload($event)" />
+                </div>
+
+                <span *ngIf="progress">{{progress}}%</span>
+
+                <div class="btn-group" dropdown *ngIf="total > 0">
+                  <button id="grid-dropdwn" dropdownToggle type="button" class="btn btn-default btn-lg dropdown-toggle"
+                    aria-controls="dropdown-basic" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="icon-grid" aria-hidden="true"></i>
+                    <span class="icon-expand-button"></span>
+                  </button>
+                  <ul id="grid-dropdwn" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="grid-dropdwn">
+                    <li (click)="onDisplayModeChange(1)">
+                      <a href="javascript:void(0);">
+                        <i class="icon-grid" aria-hidden="true"></i> Grid
+                      </a>
+                    </li>
+                    <li (click)="onDisplayModeChange(2)">
+                      <a href="javascript:void(0);">
+                        <i class="icon-list" aria-hidden="true"></i> List
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+
+              </div>
+            </div>
+            <div *ngIf="total === 0">
+              No record found
+              <div class="col-xs-12 advt text-center">
+                <app-ads-component [slug]="'folder-detail'"></app-ads-component>
+              </div>
+            </div>
+            <div *ngIf="displayMode === 1" class="_loc-view">
+
+              <div class="_loc-box" *ngFor="let data of my_vault_data | paginate: { 
+                itemsPerPage: limit,
+                currentPage: page,
+                totalItems: total,
+                maxSize: 5
+               }; let i = index">
+                <div class="_map">
+                  <img src="{{ data.file }}" alt="">
+                </div>
+                <div class="_box-content">
+                  <label>{{ data.meta_value }}</label>
+                </div>
+                <span>
+
+                  <i class="icon-delete-photo" *ngIf="is_owner || ( user_id === data.user.id )" (click)="deleteFolderData(data.id)"></i>
+
+                  <a target="_blank" *ngIf="(is_owner || showUploadButton || ( user_id === data.user.id ) )" href="{{ data.download }}"
+                    download="{{ data.f_name }}"><i class="icon-download"></i></a>
+                  <!-- <a target="_self" *ngIf="(is_owner || folderPermissions.slug == 'download') && data.download !== null" href="{{ data.download }}" download="{{ data.f_name }}"><i  class="icon-download"></i></a> -->
+
+
+
+                </span>
+              </div>
+
+              <div class="_pagination" *ngIf="total > limit">
+                <pagination-controls class="my-pagination" (pageChange)="getFolderDetail($event)"></pagination-controls>
+              </div>
+
+            </div>
+            <div *ngIf="displayMode === 2" class="_loc-view">
+              <div class="_tab-list table-responsive">
+                <table class="table table-hover ">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>File created</th>
+                      <th>Type</th>
+                      <th>action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of my_vault_data | paginate: { 
+                            itemsPerPage: limit,
+                            currentPage: page,
+                            totalItems: total,
+                            maxSize: 5
+                           }; let i = index">
+                      <td scope="row">
+                        <span class="_list-img"><img src="{{ data.file }}"></span>
+                      </td>
+                      <td>{{ data.meta_value }}</td>
+                      <td>{{ data.created_at * 1000 | date: 'yyyy-MM-dd' }}</td>
+                      <td>{{ data.extension }}</td>
+                      <td>
+                        <div class="_ls-action">
+                          <span (click)="deleteFolderData(data.id)" *ngIf="is_owner || ( user_id === data.user.id )"
+                            class="icon-delete-photo"></span>
+                          <span>
+                            <a target="_self" *ngIf="(is_owner || showUploadButton || ( user_id === data.user.id ) )"
+                              href="{{ data.download }}" download="{{ data.f_name }}"><i class="icon-download"></i></a>
+                            <!-- <a target="_self" *ngIf="(is_owner || folderPermissions.slug == 'download') && data.download !== null" href="{{ data.download }}" download="{{ data.f_name }}"><i  class="icon-download"></i></a> -->
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="_pagination" *ngIf="total > limit">
+                <pagination-controls class="my-pagination" (pageChange)="getFolderDetail($event)"></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- content area ends  -->

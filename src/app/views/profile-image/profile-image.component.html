@@ -1,0 +1,13 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<div class="col-md-3 col-xs-12 text-center">   
+  <div class="upload-wrap">
+       <div class="upload-icon">
+          <img  class="img" src="{{user_profile_data.image}}">
+       </div>
+       <span class="icon-cloud-upload">
+       <input type="file" name="file"  (change)="upload($event)" >
+       </span>
+       <span class="text">Upload Picture</span>
+   </div>
+</div>

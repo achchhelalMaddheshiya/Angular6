@@ -1,0 +1,55 @@
+
+// @mixin font-face($font-family, $primary-font-path, $font-weight, $font-style) {
+//     @font-face {
+//         font-family: $font-family;
+//         src: url('#{$primary-font-path}.eot');
+//         src: url('#{$primary-font-path}.eot?#iefix') format('embedded-opentype'),
+//             url('#{$primary-font-path}.woff') format('woff'),
+//             url('#{$primary-font-path}.ttf') format('truetype'),
+//             url('#{$primary-font-path}.svg##{$font-family}') format('svg');
+//         font-weight: $font-weight;
+//         font-style: $font-style;
+//     }
+//     //Chrome for Windows rendering fix: http://www.adtrak.co.uk/blog/font-face-chrome-rendering/
+//     @media screen and (-webkit-min-device-pixel-ratio: 0) {
+//         @font-face {
+//             font-family: $font-family;
+//             src: url('#{$primary-font-path}.svg##{$font-family}') format('svg');
+//         }
+//     }
+// }
+
+
+@font-face {
+  font-family: 'nexa_boldregular';
+  src: url('#{$primary-font-path}/nexa/nexa_bold_0-webfont.eot');
+  src: url('#{$primary-font-path}/nexa/nexa_bold_0-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$primary-font-path}/nexa/nexa_bold_0-webfont.woff2') format('woff2'),
+       url('#{$primary-font-path}/nexa/nexa_bold_0-webfont.woff') format('woff'),
+       url('#{$primary-font-path}/nexa/nexa_bold_0-webfont.svg#nexa_boldregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'nexa_lightregular';
+  src: url('#{$primary-font-path}/nexa/nexa_light_0-webfont.eot');
+  src: url('#{$primary-font-path}/nexa/nexa_light_0-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$primary-font-path}/nexa/nexa_light_0-webfont.woff2') format('woff2'),
+       url('#{$primary-font-path}/nexa/nexa_light_0-webfont.woff') format('woff'),
+       url('#{$primary-font-path}/nexa/nexa_light_0-webfont.svg#nexa_lightregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+} 
+
+@mixin nexa-light {
+   font-family: '$font', arial, sans-serif;
+   font-weight: 300;
+   font-style : normal;
+}
+@mixin nexa-bold {
+  font-family: '$font-bold', arial, sans-serif;
+  font-weight: 700;
+  font-style : normal;
+}
+
+

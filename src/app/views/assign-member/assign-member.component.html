@@ -1,0 +1,73 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+<form #locationForm="ngForm" (ngSubmit)="assignMember($event)" novalidate>
+
+
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+
+
+    <div class="_search">
+      <a href="javascript:void(0);" target="_blank" routerLink="/profile"><img src="assets/images/backword.png">Profile
+        Family</a>
+      <input type="text" [(ngModel)]="userFilter.receiver_detail.name" name="userFilter.receiver_detail.name" class="input-control"
+        placeholder="Search">
+    </div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+
+  <div class="modal-body">
+          <div *ngIf=" all_members.length == 0 " class="has-error">
+          No family added yet
+        </div>
+     
+    <div class="col-xs-12 col-sm-6 col-md-4 _dtl-box" *ngFor="let data of all_members | filterBy : userFilter;trackBy:id let i = index">
+        <!-- [className]="data.is_error ? 'has-error' : '_mem-detail'" -->
+      <div class="_mem-detail" [ngClass]="data.is_error ? 'has-error' : ''">
+        <div class="_fam-membr">
+          <span><img src="{{ data.receiver_detail.image }}" alt="User Image"></span>
+          <label>{{ data.name }}</label>
+          <samp class="_relation">{{ data.relation_data.name }}({{ data.family_type_detail.slug }})</samp>
+          <label class="custom-check">
+            <input (change)="onItemSelect()" type="checkbox" name="selected_id{{i}}" [(ngModel)]="all_members[i].receiver_detail.folder_permissions[0].selected_id">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="btn-group">
+          
+          <ng-select
+              [items]="dropdownList"
+              [multiple]="true"
+              bindLabel="name"
+              [closeOnSelect]="false"
+              name="permission_{{i}}"
+              (change)="onItemSelect($event)"
+              placeholder="Select Permissions"
+              [(ngModel)]="data.receiver_detail.folder_permissions[0].permission">
+        </ng-select>
+
+          <!-- <ng-multiselect-dropdown [placeholder]="'Select permission'" [data]="dropdownList" name="permission_{{i}}"
+            [(ngModel)]="all_members[i].receiver_detail.folder_permissions[0].permission" [settings]="dropdownSettings"
+            (onSelect)="onItemSelect()">
+          </ng-multiselect-dropdown> -->
+        </div>
+      </div>
+      <!-- <div *ngIf="data.is_error" class="has-error">
+        Required
+      </div> -->
+
+    </div>
+
+    <div class="clearfix"></div>
+
+  </div>
+  <div class="modal-footer">
+    <div class="form-group">
+      <input type="submit" value="Save" class="btn-fill">
+    </div>
+  </div>
+
+
+</form>

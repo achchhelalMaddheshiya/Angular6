@@ -1,0 +1,163 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+
+<section>
+  <div class="package-area">
+
+    <!-- top banner start here -->
+    <div class="page-title-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Package</h1>
+            <h1 *ngIf="!user_packages">
+              You have dont have any active subscription please subscribe to a plan
+            </h1>
+            <h1 *ngIf="user_packages && user_packages.details.slug !== ''">
+              You have subscribed to plan {{user_packages?.details.name}}
+              <span *ngIf="user_packages && user_packages.details.slug !== 'free'">
+                , canceled at {{ user_packages?.canceled_at * 1000 | date: 'yyyy-MM-dd h:mm:s a' }}
+              , will be expired on {{ user_packages?.current_period_end * 1000 | date: 'yyyy-MM-dd h:mm:s a' }}
+              </span>
+              
+            </h1>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- top banner end here -->
+    
+
+      
+          <div class="container">
+
+        <div id="package">
+
+          <div class="inner-content">
+            <div class="package-area">
+              <div class="features">
+                <h3>Features</h3>
+                <ul>
+                  <li> Audio</li>
+                  <li>Video</li>
+                  <li>Documents</li>
+                  <li> Pictures </li>
+                  <li> Members </li>
+                  <li>Price</li>
+                  <li>
+                    <!-- Validity(Months)     -->
+                  </li>
+                </ul>
+              </div> <!-- features ends -->
+              <div class="package-offer">
+
+                <div class="offer-price" *ngFor="let item of all_packages">
+                  <div class="offer-head">
+                    <h3>{{ item.name }}</h3>
+                  </div>
+
+                  <div class="offer-list">
+                    <ul>
+                      <li>
+                        <div class="title"> Audio </div>
+                        <span><i class="icon-check"></i></span>
+                        <p>{{item.audio_limit}} Upto {{item.duration}} Mins</p>
+                      </li>
+                      <li>
+                        <div class="title"> Video </div>
+                        <span>{{item.video_limit}}</span>
+                      </li>
+
+                      <li>
+                        <div class="title"> Documents </div>
+                        <span><i class="icon-check"></i></span>
+                        <p>Limited to {{item.document_limit}}</p>
+                      </li>
+                      <li>
+                        <div class="title"> Pictures </div>
+                        <span><i class="icon-check"></i></span>
+                        <p>Limited to {{item.image_limit}}</p>
+                      </li>
+
+                      <li>
+                        <div class="title"> Members </div>
+                        <span><i class="icon-check"></i></span>
+                        <p>{{item.members_count_limit}} Members</p>
+                      </li>
+
+                      <li>
+                        <div class="title"> Price </div>
+                        <span><i class="icon-check"></i></span>
+                        <p>{{ (item.amount == 0 ) ? 'Free' : item.amount }} </p>
+                      </li>
+
+                      <!-- <li> <div class="title"> Validity(Months) </div>
+                          <span><i class="icon-check" aria-hidden="true"></i></span>
+                          <p>{{  (item.amount == 0 ) ? '-' : '1 Months' }}</p>
+                      </li> -->
+                    </ul>
+
+                    <button type="button" *ngIf="!user_packages && item.amount > 0" (click)="showPayment(item.id)">Buy
+                    </button>
+                    <button type="button" *ngIf="( user_packages && item.amount > 0 && user_packages.details.slug == 'gold' && user_packages.cancel_at_period_end == 1)"
+                      (click)="showPayment(item.id)">Buy After All Cancelled
+                    </button>
+
+                    <button type="button" *ngIf="user_packages && item.amount > 0  && (user_packages.package_id !== item.id && user_packages.details.slug !== 'gold'); else showUnsubscribeButton"
+                      (click)="showPayment(item.id)">Buy</button>
+                    <ng-template #showUnsubscribeButton>
+
+                      <button (click)="unsubscribePayment(user_packages.id)" type="button" *ngIf="user_packages && item.amount > 0 && user_packages.cancel_at_period_end === 0 && user_packages.package_id === item.id  ">
+                        Unsubscribe
+                      </button>
+                    </ng-template>
+
+                  </div>
+
+                </div> <!-- offer-price ends -->
+
+              </div>
+
+
+            </div>
+          </div>
+          <div class="clearfix"></div>
+
+          <!-- 
+            
+             <button [disabled]="true" type="button" *ngIf="item.amount > 0 && user_packages.cancel_at_period_end === 1 && (user_packages.current_period_end < current_time) ">Canceled
+                        & Expired</button>
+                      <button type="button" *ngIf="item.amount > 0 && user_packages.cancel_at_period_end === 1 && user_packages.current_period_end > current_time ">
+                        Canceled, will be expired on {{ user_packages.current_period_end * 1000 | date: 'yyyy-MM-dd
+                        h:mm:s a' }}
+                      </button> 
+                      
+                      -->
+
+        </div>
+      </div>
+        <form novalidate (ngSubmit)="buy($event)" [formGroup]="stripeTest" *ngIf="showPaymentForm" class="_mk-payment">
+          <div class="card-area pull-right">
+            <div class="card-section">
+              <h3>Make payment</h3>
+              <input type="text" formControlName="name" placeholder="Card holder name">
+
+              <div id="card-element" class="field"></div>
+
+              <button type="submit" class="btn border-btn card-btn">
+                Pay
+              </button>
+              <button (click)="cancelPayment();" type="button" class="btn border-btn card-btn">
+                Cancel
+              </button>
+
+            </div>
+          </div>
+        </form>
+      
+
+  </div>
+</section>
+
+<!-- content area ends  -->

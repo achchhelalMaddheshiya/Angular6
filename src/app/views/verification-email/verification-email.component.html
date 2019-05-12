@@ -1,0 +1,15 @@
+<!-- content area start here -->
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<section class="content-area">
+  <div class="login-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" *ngIf="showForm">
+          This link has been expired
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- content area ends  -->

@@ -1,0 +1,83 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<!-- top banner start here -->
+<div class="page-title-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Forgot PIN</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- top banner end here -->
+
+<div class="login-wrapper  forgot-pin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-sm-6 col-sm-offset-2">
+          <div class="login-form">
+          
+            <h4>Your Personal Detail</h4>
+            <form #codeForm="ngForm" (ngSubmit)="codeForm.valid ? save() : '' " novalidate>
+              <div class="form-group">
+                <label>Name *</label>
+                <input type="text" class="input-control" placeholder="Name" #name="ngModel" [(ngModel)]="forgotPinModel.name"
+                  name="name" required>
+
+                <div class="has-error" *ngIf="name.errors && (name.dirty || name.touched || codeForm.submitted)">
+                  <div *ngIf="name.errors.required">
+                    The name is required
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="form-group">
+                <label>Email *</label>
+
+                <input class="input-control" email type="email" #email="ngModel" [(ngModel)]="forgotPinModel.email" name="email"
+                  placeholder="Email" required>
+                <div class="has-error" *ngIf="email.errors && (email.dirty || email.touched || codeForm.submitted)">
+                  <div *ngIf="email.errors.required">
+                    The email is required
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group">
+                <label>Date of birth *</label>
+                <input placeholder="Date of birth" class="input-control" required [(ngModel)]="forgotPinModel.dob" name="dob"
+                  #dob="ngModel" [minDate]="minDate" [maxDate]="maxDate" #dpYMD="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+
+                <div class="has-error" *ngIf="dob.errors && (dob.dirty || dob.touched || codeForm.submitted)">
+                  <div *ngIf="dob.errors.required">
+                    The dob is required
+                  </div>
+                </div>
+
+              </div>
+              <!-- <div class="form-group">
+                <label>If you don’t live in the UK, then please leave the postcode field blank.</label>
+
+              </div> -->
+              <div class="form-group">
+                <input type="submit" value="submit" class="btn-fill">
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div class="col-sm-2 adver-wrap margin-bottom-6x">
+            <app-ads-component [slug]="'forgot-pin'"></app-ads-component>
+        </div>
+        <!-- <div class="adver-wrap adver-wrap-btm margin-bottom-6x">
+          <a href="">
+            <img src="assets/images/advertise-03.jpg" alt="">
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

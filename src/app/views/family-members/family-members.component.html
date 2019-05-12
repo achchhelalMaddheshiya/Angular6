@@ -1,0 +1,82 @@
+<!-- family mamber list start here -->
+
+<div class="members-wrap">
+  <div class="container">
+    <div class="_fa-membr">
+    <h2>Family Members({{ total }})</h2>
+    <form #familyForm="ngForm" (ngSubmit)="familyForm.valid ? getMyFamilyMembers() : submitted = true  " novalidate>
+
+        <div class="input-group"> 
+            <input type="text" required class="form-control   input-control" #search="ngModel" [(ngModel)]="familyMembersModel.search" name="search" placeholder="Search">
+           <span class="input-group-btn"> 
+             <button class="btn btn-default" type="submit">search!</button>
+             </span> 
+            </div>
+           
+              <input type="reset" class="_reset btn btn-danger" value="Reset" (click)="familyMembersModel = {}; getMyFamilyMembers()">
+              <div class="has-error" *ngIf="search.errors && (search.dirty || search.touched || familyForm.submitted)">
+                  <div *ngIf="search.errors.required">
+                    The field is required
+                  </div>
+                </div>
+     
+      <!-- <div class="form-group">
+        <input type="text" required class="input-control" #search="ngModel" [(ngModel)]="familyMembersModel.search" name="search">
+
+        <div class="has-error" *ngIf="search.errors && (search.dirty || search.touched || familyForm.submitted)">
+          <div *ngIf="search.errors.required">
+            The field is required
+          </div>
+        </div>
+        <input type="submit" value="Search">
+        <input type="reset" value="Reset" (click)="familyMembersModel = {}; getMyFamilyMembers()">
+      </div> -->
+    </form>
+    <div class="clearfix"></div>
+  </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-6" *ngIf="total === 0 ">No record found</div>
+
+      <div class="col-md-3 col-sm-6" *ngFor="let data of all_members | paginate: { 
+            itemsPerPage: limit,
+            currentPage: page,
+            totalItems: total,
+            maxSize: 1
+           }; let i = index">
+        <div class="member">
+      
+          <span class="member-img"><img src="{{ data.receiver_detail.image }}" alt="User Image"></span>
+          <h3>{{ data.name }}</h3>
+          <p>{{ data.relation_data.name }} ({{ data.family_type_detail.slug }})</p>
+          <div class="swp-role">
+              <a (click)="swapModal(data.receiver_detail.id)" href="javascript:void(0);" class="edit"><i class="icon-swap"></i>
+                Swap Role</a>
+              </div>
+          <div class="member-footer">
+            <ul>
+              <li class="">
+              <a (click)="editMemberModal(data.id)" href="javascript:void(0);" class="edit"><i class="icon-checkbox-pen-outline"></i>
+                Edit</a>
+              </li>
+            
+            <li class="">
+              <a href="javascript:void(0);" (click)="deleteMemberModal(data.id, data.receiver_detail.name)" class="edit"><i class="icon-delete-photo"></i>
+                Delete</a>
+              </li>
+              </ul>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="_pagination" *ngIf="total > limit">
+      <pagination-controls class="my-pagination" (pageChange)="getMyFamilyMembers($event)"></pagination-controls>
+    </div>
+
+  </div>
+</div>
+<!-- family mamber list end here -->

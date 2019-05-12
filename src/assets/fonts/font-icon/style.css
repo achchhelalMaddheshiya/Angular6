@@ -1,0 +1,131 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?r32jrt');
+  src:  url('fonts/icomoon.eot?r32jrt#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?r32jrt') format('truetype'),
+    url('fonts/icomoon.woff?r32jrt') format('woff'),
+    url('fonts/icomoon.svg?r32jrt#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mail:before {
+  content: "\e902";
+}
+.icon-subscription:before {
+  content: "\e901";
+}
+.icon-swap:before {
+  content: "\e900";
+}
+.icon-grid:before {
+  content: "\e93b";
+}
+.icon-list:before {
+  content: "\e93c";
+}
+.icon-check:before {
+  content: "\e924";
+}
+.icon-reset-pas:before {
+  content: "\e925";
+}
+.icon-logout:before {
+  content: "\e926";
+}
+.icon-nomine:before {
+  content: "\e927";
+}
+.icon-error:before {
+  content: "\e928";
+}
+.icon-frame-landscape:before {
+  content: "\e929";
+}
+.icon-download:before {
+  content: "\e92a";
+}
+.icon-minus-circular-button:before {
+  content: "\e923";
+}
+.icon-add-circular-button:before {
+  content: "\e92b";
+}
+.icon-user:before {
+  content: "\e92c";
+}
+.icon-alarm:before {
+  content: "\e91d";
+}
+.icon-open-folder:before {
+  content: "\e91e";
+}
+.icon-pointer:before {
+  content: "\e91f";
+}
+.icon-add:before {
+  content: "\e920";
+}
+.icon-add-member:before {
+  content: "\e921";
+}
+.icon-calendar:before {
+  content: "\e922";
+}
+.icon-checkbox-pen-outline:before {
+  content: "\e93a";
+}
+.icon-cloud-upload:before {
+  content: "\e939";
+}
+.icon-delete-photo:before {
+  content: "\e938";
+}
+.icon-expand-button:before {
+  content: "\e937";
+}
+.icon-facebook-logo:before {
+  content: "\e936";
+}
+.icon-info-sign:before {
+  content: "\e935";
+}
+.icon-laptop:before {
+  content: "\e934";
+}
+.icon-login:before {
+  content: "\e933";
+}
+.icon-minus-symbol:before {
+  content: "\e932";
+}
+.icon-plus:before {
+  content: "\e931";
+}
+.icon-remove:before {
+  content: "\e930";
+}
+.icon-search:before {
+  content: "\e92f";
+}
+.icon-twitter-logo-silhouette:before {
+  content: "\e92e";
+}
+.icon-upload-cloud:before {
+  content: "\e92d";
+}

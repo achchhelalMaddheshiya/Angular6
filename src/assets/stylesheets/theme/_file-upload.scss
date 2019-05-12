@@ -1,0 +1,49 @@
+._document {
+    ._file-up {
+        max-width: 600px;
+        width: 100%;
+        margin: 75px auto;
+        text-align: center;
+        border: 1px dashed #d1d1d1;
+        border-radius: 5px;
+        background-color: $color10;
+        padding-top: 35px;
+        span{
+            font-size: 75px;
+            color: $color01;
+            margin: 20px 0;
+            letter-spacing: .9px;
+        }
+        p{
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            .btn {
+                padding: 8px 40px;
+                border-radius: 8px;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+              }
+              input[type=file] {
+                font-size: 38px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0;
+                width: 100%;
+              }
+          }
+          
+        
+          
+          
+    }
+    .advt{
+        margin-bottom: 100px;
+     }
+}

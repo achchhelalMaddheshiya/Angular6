@@ -1,0 +1,108 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Edit Family</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #memberForm="ngForm" (ngSubmit)="memberForm.valid ? updateFamily() : submitted = true  " novalidate>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" required class="input-control" #name="ngModel" [(ngModel)]="familyModel.name" name="name">
+
+      <div class="has-error" *ngIf="name.errors && (name.dirty || name.touched || memberForm.submitted)">
+        <div *ngIf="name.errors.required">
+          The name is required
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="text" [disabled]="true" required class="input-control" email type="email" #email="ngModel"
+        [(ngModel)]="familyModel.email" name="email">
+
+      <div class="has-error" *ngIf="email.errors && (email.dirty || email.touched || memberForm.submitted)">
+        <div *ngIf="email.errors.required">
+          The email is required
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label>DOB</label>
+      
+      <input class="input-control" required [(ngModel)]="familyModel.dob" name="dob" #dob="ngModel" [minDate]="minDate"
+        [maxDate]="maxDate" #dpYMD="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+
+      <div class="has-error" *ngIf="dob.errors && (dob.dirty || dob.touched || memberForm.submitted)">
+        <div *ngIf="dob.errors.required">
+          The dob is required
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label>Relationship</label>
+      <select class="input-control select-custom" required #relation="ngModel" [(ngModel)]="familyModel.relation" name="relation">
+        <option [ngValue]="''">Select a relationship</option>
+        <option *ngFor="let item of familyRelationShips" [ngValue]="item.id">{{item.name}}</option>
+      </select>
+
+      <div class="has-error" *ngIf="relation.errors && (relation.dirty || relation.touched || memberForm.submitted)">
+        <div *ngIf="relation.errors.required">
+          The relation is required
+        </div>
+      </div>
+
+
+    </div>
+    <div class="form-group">
+      <label>Post Code (UK)</label>
+      <div class="select-custom">
+        <input class="input-control" (ngModelChange)="checkValidAddress()" required #location="ngModel" [(ngModel)]="familyModel.location"
+          name="location" ngx-google-places-autocomplete [options]='map_options' #placesRef="ngx-places"
+          (onAddressChange)="handleAddressChange($event)" />
+
+        <div class="has-error" *ngIf="(!familyModel.lat || !familyModel.lng || !familyModel.location) && (location.dirty || location.touched || memberForm.submitted)">
+          The location is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row margin-bottom-4x form-group">
+
+      <div class="col-md-6" *ngFor="let item of familyTypesModel; let last = last" >
+       <span *ngIf=" item.id == familyModel.family_id ">
+        <span class="custom-radio pull-left">
+          <input type="radio" [disabled]="true" [value]="item.id" id="{{item.id}}" required name="family_id" [(ngModel)]="familyModel.family_id"
+            #family_id="ngModel">
+          <label for="{{item.id}}">{{ item.name }}</label>
+        </span>
+
+        <div class="has-error" *ngIf=" last && family_id.errors && (family_id.dirty || family_id.touched || memberForm.submitted)">
+          <div *ngIf="family_id.errors.required">
+            The gender is required
+          </div>
+        </div>
+        </span>
+
+
+      </div>
+
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Save" class="btn-fill">
+    </div>
+
+  </form>
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+</div>

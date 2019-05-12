@@ -1,0 +1,30 @@
+._inpages {
+        margin-top: 40px;
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 35px;
+            @media (max-width:768px){
+                font-size: 24px;
+            }
+        }
+
+        p {
+            font-size: 16px;
+            color: $color09;
+            margin-bottom: 60px;
+        }
+
+        textarea {
+            border-radius: 4px;
+            height: 180px;
+        }
+
+        .sb-btn {
+            margin: 30px 0;
+
+            input {
+                width: 110px;
+            }
+        }
+    }

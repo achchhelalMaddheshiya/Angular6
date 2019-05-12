@@ -1,0 +1,48 @@
+._err-msg{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    right: 0;
+    text-align: center;
+    width: 600px;
+    max-width: 100%;
+    ._txt{
+        @include margin(60 0);
+    h2{
+        font-size: 56px;
+        color: $color06;
+        font-family:$font-bold; 
+        margin-bottom: 0;
+        @media (max-width:480px){
+            font-size: 40px;
+        }
+    }
+    span{
+        font-size:24px;
+        color: $color08;
+        font-family:$font-bold; 
+        @media (max-width:480px){
+            font-size:18px;
+        }
+    }
+    a{
+        font-family:$font-bold; 
+        margin-top: 40px;
+        font-size: 18px;
+        padding: 5px 20px;
+        display: $ib;
+        @media (max-width:480px){
+            font-size: 16px;
+            padding: 2px 20px;
+        }
+        &:hover{
+        color: $white;    
+        }
+        i{
+            font-family:$fontawesome;  
+            margin-right: 10px;
+        }
+    }
+}
+}

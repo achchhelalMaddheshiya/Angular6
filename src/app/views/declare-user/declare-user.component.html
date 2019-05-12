@@ -1,0 +1,81 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+<form #codeForm="ngForm" (ngSubmit)="codeForm.valid ? save() : '' " novalidate>
+
+
+  <div class="modal-header _nominee-head">
+    <!-- <h4 class="modal-title pull-left">{{title}}</h4> -->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  
+    <!-- nominee popup start -->
+    <div class="_popup-nomini">
+      <div class="top-detail">
+        <div class="form-group">
+          <label class="custom-check">
+            <input type="checkbox" #terms="ngModel" [(ngModel)]="pinModel.terms" name="terms" required>
+            <span class="checkmark"></span>
+          </label>
+
+        </div>
+
+        <div class="detail-txt">
+          <p>
+            By ticking this box I declare that the account holder has passed away and as the appointee/nominee <strong>I
+              will access the deceased account holders
+              information.</strong> Any action carried out by me will be my responsibility and I will be liable for any
+            actions carried out by myself or any other persons
+            using the account. <strong> confirm that WilloDiary will not be held responsible for any actions carried
+              out by any of the appointee/nominees or any other
+              3rd parties.</strong>
+          </p>
+          <div class="has-error" *ngIf="terms.errors && (terms.dirty || terms.touched || codeForm.submitted)">
+
+            <div *ngIf="terms.errors.required">
+              Please agree to the terms and conditions
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pin-area text-center">
+        <div class="col-xs-12">
+          <p>
+            Please enter the PIN that you received at the time of Master<br>
+            user's registeration
+          </p>
+          <input type="text" class="form-control" placeholder="Enter PIN" #code="ngModel" [(ngModel)]="pinModel.code"
+            name="code" required>
+          <div class="has-error" *ngIf="code.errors && (code.dirty || code.touched || codeForm.submitted)">
+            <div *ngIf="code.errors.required" class="text-center">
+              The code is required
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="pop-btns">
+            <a class="btn border-btn" href="javascript:void(0);"  target="_blank" (click)="bsModalRef.hide()" [routerLink]="['/forgot-pin', row_id]" >Forgot PIN</a>
+            <!-- <input class="border-btn" type="submit" value="Forgot PIN" (click)="bsModalRef.hide()" routerLink="['/forgot-pin', row_id]"> -->
+          </div>
+          <div class="pop-btns">
+            <input class="btn btn-fill" type="submit" value="Submit">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- nominee popup end -->
+
+
+  
+  <!-- <div class="modal-footer">
+    <div class="form-group">
+      <input type="submit" value="Save" class="btn-fill">
+    </div>
+  </div> -->
+
+
+</form>

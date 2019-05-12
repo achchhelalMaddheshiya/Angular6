@@ -1,0 +1,70 @@
+<!-- header start here -->
+
+<header id="main-header" class="">
+  <div class="">
+  <div id="headfix" >
+    <!-- <a href="#" data-toggle=".container" id="sidebar-toggle" class="menu-btn"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a> -->
+    <div class="container afterLogin">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-6">
+          <span class="logo">
+            <a href="javascript:void(0);"><img src="assets/images/logo.png" alt="Logo" routerLink="/"></a>
+          </span>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-6 afterLogin-dev">
+
+          <div class="navigation pull-right">
+
+            <button class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseBasic">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <button *ngIf="!isLoggedIn" type="button" class="btn border-btn"><span class="icon-login"></span> Login</button>
+
+            <div class="collapse navbar-collapse _set-head" id="collapseBasic" [collapse]="!isCollapsed">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="javascript:void(0);" routerLink="/"> Home </a></li>
+                <li><a href="javascript:void(0);" routerLink="/about">About Us </a></li>
+                <li><a href="javascript:void(0);" routerLink="/how-it-works">How it Works </a></li>
+                <li><a href="javascript:void(0);" routerLink="/declaration">Declaration</a></li>
+                <li *ngIf="!isLoggedIn" routerLink="/login" class="login"><button class="btn border-btn"><span class="icon-login"></span>
+                    Login</button></li>
+              </ul>
+            </div>
+
+            <div class="login-nav">
+              <ul *ngIf="isLoggedIn">
+                  <li><a href="javascript:void(0);" routerLink="/vault" ><i class="icon-open-folder"></i></a></li>
+                  <li class="notice-icon"><a href="javascript:void(0);" routerLink="/notifications"><i class="icon-alarm"></i><samp *ngIf=" userModel.notification_count > 0 " >{{userModel.notification_count}}</samp></a></li>
+                <li >
+                  <div class="dropdown" dropdown>
+                    <div id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" class="dropdown-toggle"
+                      aria-controls="dropdown-basic">
+                      <span>{{ userModel.name }}</span> <i class="icon-expand-button"></i>
+                  </div>
+                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="button-basic">
+                        <li role="menuitem"><a class="dropdown-item" href="javascript:void(0);" routerLink="/packages"><i class="icon-subscription"></i> Subscriptions</a></li>
+                      <li role="menuitem"><a class="dropdown-item" href="javascript:void(0);" routerLink="/profile"><i class="icon-user"></i> Profile</a></li>
+                      <li role="menuitem"><a class="dropdown-item" href="javascript:void(0);" routerLink="/change-email"><i class="icon-mail"></i> Change Email</a></li>
+                      <li role="menuitem"><a class="dropdown-item" href="javascript:void(0);" routerLink="/nominee"><i class="icon-nomine"></i> Nominee</a></li>
+                      <li role="menuitem"><a class="dropdown-item" href="javascript:void(0);" routerLink="/change-password"><i class="icon-reset-pas"></i> Change
+                          Password</a></li>
+                      <li role="menuitem"><a class="dropdown-item" href="javascript:void(0);" (click)="logout()"><i class="icon-logout"></i> Logout</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- /.navbar-collapse -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</header>
+<!-- header ends here -->

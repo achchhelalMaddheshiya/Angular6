@@ -1,0 +1,197 @@
+body{
+	  font-family: $font-regular;
+}
+img{
+	max-width: 100%;
+}
+
+
+.page-title-wrapper{
+    @include gradient-purple;
+    h1{
+        font-family: $font-bold;
+        font-size: 34px;
+        color: $white;
+        text-align: center;
+        @include margin(50 0 45);
+        @media (max-width:767px){
+            font-size: 25px;
+            @include margin(30 0 25);
+        }
+    }
+   
+}
+
+.content-area{
+      
+     @media (min-width:768px){
+             padding-top: 96px;
+            min-height:calc(100vh - 217px);
+        }
+    h2{
+        color: $heading-color;
+        @include margin(10 0 25 0);
+        i.icon-info-sign {
+            border: 1px solid $color01;
+            border-radius: 50%;
+            color:$color01;
+            @include padding(3);
+            font-size: 12px;
+            display: inline-block;
+            vertical-align:middle;
+        }
+        @media (max-width:640px){
+            text-align:center;
+        }
+    }
+    p{
+        color: $text-color;
+        font-size: 18px;
+        span{
+            font-family: $font-bold;
+        }
+    }
+}
+
+.adv-dsk{
+    @media (max-width:992px){
+          display: none;
+    }
+      a{
+        display: block;
+        img{
+            width:100%;
+            max-width: 300px;
+        }
+    }
+}
+
+.adv-tab{
+    @media (min-width:992px){
+          display: none;
+    }
+    a{
+        display: block;
+        img{
+            width:100%;
+        }
+    }
+}
+
+
+
+.has-error{
+    float: left;
+    width: 100%;
+    text-align: left;
+    margin: 5px 0px;
+    color: #f00;
+}
+
+
+@mixin secondary-btn{
+    border: 1px solid $color01 !important;
+    background: transparent;
+}
+@mixin button-style{
+    box-shadow: inherit;
+    border: 0;
+    line-height: 1;
+    padding: 15px 25px;
+    border-radius: 50px;
+}
+
+@mixin primary-btn{
+    background: $color01;
+    color: $white;
+    font-weight:600;
+}
+
+
+
+// pagination css
+._pagination{ 
+    margin: 15px 0 40px;
+    ul {
+        padding: 0;
+    li{
+        padding: 0 0px 0 5px;
+        &.current{
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            text-align: center; 
+            background: $color01;
+            line-height:23px;
+            span{
+                color: $white;
+                text-decoration: none;
+            }
+        }
+        &.pagination-previous{
+            margin-right: 15px;
+            &:before{
+               content: none !important;
+            }
+            a{
+                width: auto;
+                text-decoration: underline;
+                &:hover{
+                    background-color: transparent;
+                }
+                &:before{
+                    content: none !important;
+                }
+            }
+        }
+        &.pagination-next{
+            margin-left: 15px;
+            &.disabled{
+                &:after{
+                    display: none;
+                }
+            }
+            a{
+                background-color: transparent;
+                text-decoration: underline;
+                width: auto;
+                &:after{
+                    content: none !important;
+                 }
+                 &:hover{
+                     color: $color01;
+                 }
+            }
+        }
+        span {
+            color: #000;
+            text-decoration: underline;
+        }
+        a{
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            line-height: 23px;
+            text-align: center;
+            span{
+                text-decoration: none;
+            }
+        }
+    }
+}
+} 
+// pagination css end
+
+
+
+div#swal2-content {
+    font-size: 15px;
+    margin: 2px 0 10px;
+}
+.swal2-actions button {
+    font-size: 14px !important;
+}
+
+.swal2-actions button.swal2-confirm{
+    background-color: $color01!important;
+}

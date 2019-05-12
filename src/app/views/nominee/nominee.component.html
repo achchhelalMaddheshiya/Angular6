@@ -1,0 +1,96 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<div class="vault-area">
+  <!-- top banner start here -->
+  <div class="page-title-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Nominees</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- top banner end here -->
+
+  <div class="container">
+    <div class=" _location _nominee">
+      <div class="row">
+        <div class="col-xs-12  ">
+          <div class="_nmn-head">
+            <h2 class="col-sm-3">Nominees</h2>
+            <div class="col-sm-6 _nmn-adv text-center">
+              <app-ads-component [slug]="'nominee'"></app-ads-component>
+            </div>
+            <div class="col-sm-3 _tp-srch">
+              <div class="_search">
+                <input type="text" (keyup)="search($event);" class="input-control" placeholder="Search By Name">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="_tab-view">
+
+          <div class="col-xs-12">
+            <div class="_tab-list table-responsive">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Relation</th>
+                    <th>Role</th>
+                    <th>Declaration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngIf="total === 0; else showdata">
+                    <td colspan="4">No record found</td>
+                  </tr>
+                  <ng-template #showdata>
+                    <tr *ngFor="let data of my_vault_data | paginate: { 
+                    itemsPerPage: limit,
+                    currentPage: page,
+                    totalItems: total,
+                    maxSize: 5
+                   }; let i = index">
+                      <td>{{ data.sender_detail.name }}</td>
+                      <td>{{ data.relation_data.name }}</td>
+                      <td>{{ data.family_type_detail.slug }}</td>
+                      <td>
+                        <div class="form-group">
+                          <label class="custom-check" *ngIf=" data.family_type_detail.slug == 'primary'; else showGuarantee; ">
+                            <input type="checkbox" [(ngModel)]="data.sender_detail.temp_primary_declaration" [disabled]="(data.sender_detail.temp_primary_declaration == 1) ? true : false "
+                              (change)="declareDeadUser(data, i);">
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <ng-template #showGuarantee>
+                            <label class="custom-check">
+                              <input type="checkbox" [(ngModel)]="data.sender_detail.temp_guarantee_declaration"
+                                [disabled]="(data.sender_detail.temp_primary_declaration == 0 || data.sender_detail.temp_guarantee_declaration == 1) ? true : false "
+                                (change)="declareDeadUser(data, i);">
+                              <span class="checkmark"></span>
+                            </label>
+                          </ng-template>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-template>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="_pagination" *ngIf="total > limit">
+              <pagination-controls class="my-pagination" (pageChange)="getDetail($event)"></pagination-controls>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>

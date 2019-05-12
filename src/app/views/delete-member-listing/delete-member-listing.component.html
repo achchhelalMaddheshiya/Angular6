@@ -1,0 +1,36 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<div class="modal-header _delt-header">
+  <h4 class="modal-title text-center">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row _delet-detail">
+      <div class="col-xs-12">
+  <ul class="_del-pop">
+    <li *ngFor="let res of data; let i=index">
+      <div class="details">
+        
+        <div class="text-details">
+           <span>{{ i+1 }}.</span>
+          <label>{{ res.name }}</label>
+        </div>
+        <div class="date-time">
+          <span *ngFor="let response of res.permission; let isLast=last">{{ response }}{{isLast ? '' : ', '}}</span>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+</div>
+</div>
+</div>
+<div class="modal-footer _del-footer">
+  <label>Are you sure you want to remove?</label>
+  <div class="form-group text-center">
+    <input type="button" value="Yes" class="btn-fill" (click)="deleteMember(id);">
+    <input type="button" value="No" class="btn border-btn" (click)="bsModalRef.hide();">
+  </div>
+</div>

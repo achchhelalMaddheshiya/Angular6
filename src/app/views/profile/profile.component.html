@@ -1,0 +1,198 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+<section class="">
+
+    <!-- top banner start here -->
+    <div class="page-title-wrapper">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <h1>Profile</h1>
+            </div>
+         </div>
+      </div>
+</div>
+<!-- top banner end here -->
+
+  <div class="profile-area">
+    <div class="container">
+      <div class="row">
+
+        <!-- <app-profile-image *ngIf="!isEditForm" [user_profile_data]="user_profile_data"></app-profile-image> -->
+        <app-profile-image  [user_profile_data]="user_profile_data"></app-profile-image>
+
+
+        <div class="tab-content col-md-5 col-xs-12">
+          
+          <div class="profile-tabs">
+            <!-- <ul class="nav nav-tabs"> -->
+            <tabset>
+              <tab heading="Personal">
+                <div class="right-tab">
+                  <form #userForm="ngForm" (ngSubmit)="userForm.valid ? updateUser() : '' " novalidate>
+
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" [disabled]="!isEditForm" required class="input-control" #name="ngModel" [(ngModel)]="userModel.name"
+                        name="name">
+
+                      <div class="has-error" *ngIf="name.errors && (name.dirty || name.touched || userForm.submitted)">
+                        <div *ngIf="name.errors.required">
+                          The name is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Email Address (display registered email)</label>
+                      <input [disabled]="true" type="text" class="input-control" email type="email" #email="ngModel"
+                        [(ngModel)]="userModel.email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="submit" value="Save" class="btn-fill" *ngIf="isEditForm">
+                      <input type="submit" value="Cancel" class="btn-fill" routerLink="/profile" *ngIf="isEditForm">
+
+
+                    </div>
+                  </form>
+
+                </div>
+              </tab>
+              <tab heading="Family" *ngIf="!isEditForm">
+                <div class="right-tab margin-bottom-6x">
+                
+                  <form #memberForm="ngForm" (ngSubmit)="memberForm.valid ? createFamily() : submitted = true  "
+                    novalidate>
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" required class="input-control" #name="ngModel" [(ngModel)]="familyModel.name"
+                        name="name">
+
+                      <div class="has-error" *ngIf="name.errors && (name.dirty || name.touched || memberForm.submitted)">
+                        <div *ngIf="name.errors.required">
+                          The name is required
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label>Email Address</label>
+                      <input type="text" required class="input-control" email type="email" #email="ngModel" [(ngModel)]="familyModel.email"
+                        name="email">
+
+                      <div class="has-error" *ngIf="email.errors && (email.dirty || email.touched || memberForm.submitted)">
+                        <div *ngIf="email.errors.required">
+                          The email is required
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label>DOB</label>
+
+                      <input class="input-control" required [(ngModel)]="familyModel.dob" name="dob" #dob="ngModel"
+                        [minDate]="minDate" [maxDate]="maxDate" #dpYMD="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+
+                      <div class="has-error" *ngIf="dob.errors && (dob.dirty || dob.touched || memberForm.submitted)">
+                        <div *ngIf="dob.errors.required">
+                          The dob is required
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label>Relationship</label>
+                      <select class="input-control select-custom" required #relation="ngModel" [(ngModel)]="familyModel.relation"
+                        name="relation">
+                        <option [ngValue]="''">Select a relationship</option>
+                        <option *ngFor="let item of familyRelationShips" [ngValue]="item.id">{{item.name}}</option>
+                      </select>
+
+                      <div class="has-error" *ngIf="relation.errors && (relation.dirty || relation.touched || memberForm.submitted)">
+                        <div *ngIf="relation.errors.required">
+                          The relation is required
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                    <div class="form-group">
+                      <label>Post Code (UK)</label>
+                      <div class="select-custom">
+                        <input class="input-control" (ngModelChange)="checkValidAddress()" required #location="ngModel"
+                          [(ngModel)]="familyModel.location" name="location" ngx-google-places-autocomplete [options]='map_options'
+                          #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+
+                        <div class="has-error" *ngIf="(!familyModel.lat || !familyModel.lng || !familyModel.location) && (location.dirty || location.touched || memberForm.submitted)">
+
+                          The location is required
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="row margin-bottom-4x form-group">
+
+                      <div class="col-md-6" *ngFor="let item of familyTypesModel; let last = last">
+                        <span class="custom-radio">
+                          <input type="radio" [value]="item.id" id="{{item.id}}" required name="family_id" [(ngModel)]="familyModel.family_id"
+                            #family_id="ngModel">
+                          <label for="{{item.id}}">{{ item.name }}</label>
+                        </span>
+
+                        <div class="has-error" *ngIf=" last && family_id.errors && (family_id.dirty || family_id.touched || memberForm.submitted)">
+                          <div *ngIf="family_id.errors.required">
+                            The gender is required
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" value="Save" class="btn-fill">
+                    </div>
+                   
+                  </form>
+
+                </div>
+              </tab>
+            </tabset>
+
+         
+          </div>
+
+
+        </div>
+
+        <div class="col-md-4 col-xs-12 align-center">
+            <a class="_edit-profile" *ngIf="!isEditForm" href="javascript:void(0)" routerLink="/profile/edit">
+              <span class="icon-checkbox-pen-outline"></span> Edit Profile</a>
+          <div class="adv-dsk">
+              <app-ads-component [slug]="'profile'"></app-ads-component>
+          </div>
+          <!-- <div class="adv-tab">
+            <div class="adver-wrap">
+              <a href="javascript:void(0);">
+                <img src="assets/images/advertise-03.jpg" alt="">
+              </a>
+            </div>
+          </div> -->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- [user_members_data]="user_members_data" -->
+  <app-family-members ></app-family-members>
+
+</section>
+
+<!-- content area ends  -->

@@ -1,0 +1,141 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<!-- content area start here -->
+<section>
+  <!-- top banner start here -->
+  <div class="page-title-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Location</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- top banner end here -->
+
+  <div class="profile-area _inpages _location">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Location</h2>
+          <div class="profile-tabs">
+            <ul class="nav nav-tabs">
+              <li *ngFor="let item of items; let i=index" [ngClass]="{'active': selectedIndex == i}" (click)="loadComponent(i);"><a
+                  href="javascript:void(0);">{{item}}</a></li>
+            </ul>
+
+            <a *ngIf="total > 0 && is_owner " href="javascript:void(0);" class="btn btn-fill pull-right" (click)="addLocation(selectedIndex)">Add
+              Locations</a>
+          </div>
+          <div class="tab-content">
+            <div *ngIf="selectedIndex === 0">
+              <div class="_loc-view">
+
+                <div class="_loc-box" *ngFor="let data of my_links_data | paginate: { 
+                                                itemsPerPage: limit,
+                                                currentPage: page,
+                                                totalItems: total,
+                                                maxSize: 5
+                                               }; let i = index">
+                  <div class="_map">
+                    <img src="{{ data.file }}" alt="">
+                  </div>
+                  <div class="_box-content">
+                    <label>{{ data.meta_value }}</label>
+                    <p>
+                      {{ data.meta_description }}
+                    </p>
+                  </div>
+                  <span>
+                    <i class="icon-delete-photo" aria-hidden="true" (click)="deleteFolderData(data.id,selectedIndex)"></i>
+                  </span>
+                </div>
+
+                <div class="col-xs-12 align-center ">
+                  <div class="advt">
+                    <app-ads-component [slug]="'location'"></app-ads-component>
+                  </div>
+                </div>
+
+              </div>
+              <!-- <div class="row">
+                <div class="_pagination col-md-12" *ngIf="total > limit">
+                  <pagination-controls class="my-pagination" (pageChange)="getDetail($event)"></pagination-controls>
+                </div>
+              </div> -->
+            </div>
+
+
+            <div *ngIf="selectedIndex === 1">
+
+              <div class="_loc-view">
+
+                <div class="_loc-box" *ngFor="let data of my_links_data | paginate: { 
+                    itemsPerPage: limit,
+                    currentPage: page,
+                    totalItems: total,
+                    maxSize: 5
+                   }; let i = index">
+                  <div class="_map">
+                    <img src="{{ data.file }}" alt="">
+                  </div>
+                  <div class="_box-content">
+                    <label>{{ data.meta_value }}</label>
+                    <p>
+                      {{ data.meta_description }}
+                    </p>
+                  </div>
+                  <span>
+                    <i class="icon-delete-photo" *ngIf="is_owner" aria-hidden="true" (click)="deleteFolderData(data.id,selectedIndex)"></i>
+                  </span>
+                </div>
+
+                <div class="col-xs-12 align-center ">
+                    <div class="advt">
+                         <app-ads-component [slug]="'location'"></app-ads-component>
+                    </div>
+                </div>
+
+              </div>
+
+
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="_pagination col-md-12" *ngIf="total > limit">
+                <pagination-controls class="my-pagination" (pageChange)="getDetail($event)"></pagination-controls>
+              </div>
+            </div>
+            <!-- Add New Location  -->
+            <div id="menu1" class="tab-pane fade in active" *ngIf="total == 0">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="_add-loc">
+                    <img src="assets/images/location-img.png" alt="">
+                    <div class="form-group">
+                      <input *ngIf="is_owner" (click)="addLocation(selectedIndex)" value="Add Locations" class="btn-fill"
+                        type="submit" data-toggle="modal" data-target="._add-location">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-xs-12 align-center margin-bottom-6x">
+                  <div class="adv-dsk">
+                    <a href="">
+                      <img src="assets/images/advertise-profile.jpg" alt="">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add New Location  -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,112 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<!-- content area start here -->
+<section>
+  <!-- top banner start here -->
+  <div class="page-title-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Notifications</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- top banner end here -->
+
+  <div class="profile-area _inpages _location">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Notifications</h2>
+          <div class="profile-tabs">
+            <ul class="nav nav-tabs">
+              <li *ngFor="let item of items; let i=index" [ngClass]="{'active': selectedIndex == i}" (click)="loadComponent(i);"><a
+                  href="javascript:void(0);">{{item}}</a></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div *ngIf="selectedIndex === 0" class="notification-area">
+              <ul>
+              <li *ngFor="let data of all_notifications | paginate: { 
+                  id: 'first',
+                  itemsPerPage: limit,
+                  currentPage: page,
+                  totalItems: total,
+                  maxSize:5
+                }; let i = index">
+
+                <div class="img-box">
+                  <img src="{{ data.receiver_image }}" alt="">
+                </div>
+
+                <div class="details">
+                  <div class="text-details">
+                    <h3>{{ data.message }}</h3>
+                  </div>
+                </div>
+              </li>
+            </ul>
+              
+            </div>
+            <div class="_pagination" *ngIf="selectedIndex === 0">
+                <pagination-controls id="first" class="my-pagination" (pageChange)="getNotifications($event)"></pagination-controls>
+              </div>
+
+            <div *ngIf="selectedIndex === 1">
+
+              <li *ngFor="let data of all_requests | paginate: { 
+                    id: 'second',
+                    itemsPerPage: request_limit,
+                    currentPage: request_page,
+                    totalItems: request_total,
+                    maxSize:5
+                 };
+                  let in = index">
+
+                <div class="img-box">
+                  <img src="{{ data.sender_detail.image }}" alt="Logo">
+                </div>
+
+                <div class="details">
+                  <div class="text-details">
+                    <h3>{{ data.sender_detail.name}} has requested to add as family member
+                      ({{data.relation_data.name}})</h3>
+                    <p>
+
+                      <button type="button" class="btn btn-primary" (click)="requestActions(data.sender_detail.id,1)">Accept</button>
+                      <br />
+                      <button type="button" class="btn btn-primary" (click)="requestActions(data.sender_detail.id,2)">Reject</button>
+                    </p>
+                  </div>
+                  <div class="date-time">
+                    <span>{{ data.created_at * 1000 | date: 'yyyy-MM-dd' }}</span>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <div class="_pagination" *ngIf="selectedIndex === 1">
+                <pagination-controls id="'second'" class="my-pagination" (pageChange)="getMyRequests($event)"></pagination-controls>
+              </div> -->
+
+
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="row">
+
+
+
+            </div>
+
+          </div>
+          <div class="adver-wrap">
+              <app-ads-component [slug]="'notifications'"></app-ads-component>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

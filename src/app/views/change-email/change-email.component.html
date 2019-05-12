@@ -1,0 +1,50 @@
+<!-- content area start here -->
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<section>
+  <!-- top banner start here -->
+  <div class="page-title-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Change Email</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- top banner end here -->
+
+  <div class="login-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="login-form">
+            <h4>Change Email</h4>
+            <form #userForm="ngForm" (ngSubmit)="userForm.valid ? changeEmail() : '' " novalidate>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input class="input-control" email type="email" #email="ngModel" [(ngModel)]="changeEmailModel.email" name="email"
+                  placeholder="Email" required>
+
+                <div class="has-error" *ngIf="email.errors && (email.dirty || email.touched || userForm.submitted)">
+
+                  <div *ngIf="email.errors.required">
+                    The email is required
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="submit" value="Update" class="btn-fill">
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- content area ends  -->

@@ -1,0 +1,80 @@
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<section class="content-area">
+  <div class="login-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+          <div class="login-form">
+            <h4>Login</h4>
+
+            <form #userForm="ngForm" (ngSubmit)="userForm.valid ? login() : '' " novalidate>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input class="input-control" email type="email" #email="ngModel" [(ngModel)]="userModel.email" name="email"
+                  placeholder="Email" required>
+
+                <div class="has-error" *ngIf="email.errors && (email.dirty || email.touched || userForm.submitted)">
+
+                  <div *ngIf="email.errors.required">
+                    The email is required
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Password</label>
+
+                <input class="input-control" type="password" #password="ngModel" [(ngModel)]="userModel.password" name="password"
+                  placeholder="Password" required>
+
+                <div class="has-error" *ngIf="password.errors && (password.dirty || password.touched || userForm.submitted)">
+                  <div *ngIf="password.errors.required">
+                    The password is required
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="checkbox-wrap">
+                <label class="custom-check">Remember Password
+                  <input type="checkbox" #remember_me="ngModel" [(ngModel)]="userModel.remember_me" name="remember_me">
+                  <span class="checkmark"></span>
+                </label>
+                <p class="pull-right"><a routerLink="/forgot-password">Forgot Password</a></p>
+              </div>
+
+              <div *ngIf="userModel.user_unverified; else hideLoginButton">
+                <input type="button" value="Resend Verification" *ngIf="userModel.user_unverified" class="btn-fill"
+                  (click)="resendVerification()">
+              </div>
+
+              <br>
+              <ng-template #hideLoginButton>
+                <input type="submit" value="Login" class="btn-fill">
+              </ng-template>
+
+            </form>
+
+            <span class="or"><span>or</span></span>
+
+            <p class="signin">Don’t have an account? <a routerLink="/">Sign up</a></p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4 align-left">
+          <span class="adv-dsk d-block">
+              <app-ads-component [slug]="'login'"></app-ads-component>
+          </span>
+          <!-- <div class="adv-tab">
+            <div class="adver-wrap">
+              <a href="">
+                <img src="assets/images/advertise-03.jpg" alt="">
+              </a>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

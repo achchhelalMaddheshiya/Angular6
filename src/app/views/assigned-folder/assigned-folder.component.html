@@ -1,0 +1,65 @@
+<!-- content area start here -->
+<ngx-loading [show]="loading" [config]="{primaryColour: '#dd0031', secondaryColour: '#006ddd', tertiaryColour: '#dd0031', backdropBorderRadius: '3px'}"></ngx-loading>
+
+<section>
+  <div class="vault-area">
+    <!-- top banner start here -->
+    <div class="page-title-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Assigned Folders</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- top banner end here -->
+    <div class="container">
+      <div class="row" >
+        <div *ngIf="my_vault_data == 0">No record found</div>
+
+        <div class="col-md-3 col-sm-6" *ngFor="let data of my_vault_data | paginate: { 
+                itemsPerPage: limit,
+                currentPage: page,
+                totalItems: total,
+                maxSize: 5
+               }; let i = index">
+          <div class="v-wrap">
+         
+            <span class="v-icon active" >
+              <a href="javascript:void(0);" style="display: block;" (click)="defaultFolderDetail(data.folder.slug,data.folder.id);">
+                <img src="{{ data.folder.subfolder_image }}" alt="">
+              </a>
+            </span>
+
+            <!-- <span class="btn-box">
+              <a (click)="assignMemberModal(data.id)" href="javascript:void(0);" class="icon-add-member"></a>
+            </span> -->
+
+            <h4 class="v-head">{{data.folder.name}}</h4>
+          </div>
+        </div>
+
+
+
+        <!-- add start here 
+                   <div class="col-xs-12 align-center "> 
+                              <div class="adver-wrap">
+                                  <a href="">
+                                    <img src="assets/images/advertise-03.jpg" alt="">
+                                  </a>
+                              </div>
+                    </div>-->
+
+        <!-- add end here -->
+
+      </div>
+      <div class="_pagination" *ngIf="total > limit">
+        <pagination-controls class="my-pagination" (pageChange)="getFolderByUser($event)"></pagination-controls>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- content area ends  -->

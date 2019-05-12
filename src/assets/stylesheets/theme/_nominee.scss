@@ -1,0 +1,181 @@
+._nominee {
+  ._nmn-head {
+    ._tp-srch,._nmn-adv, h2 {
+      display: inline-block;
+      vertical-align: middle;
+      float: none;
+      margin: 0;
+      @media (max-width:768px){
+        margin: 10px 0;
+      }
+    }
+
+    ._tp-srch {
+      input {
+        height: 38px;
+        padding-left: 35px;
+        background-image: url(/assets/images/search.png);
+        background-repeat: no-repeat;
+        background-position: 10px center;
+      }
+    }
+  }
+
+  ._tab-view {
+    margin-top: 30px;
+    float: left;
+    width: 100%;
+
+    ._tab-list {
+      box-shadow: 0 0 5px #ccc;
+      margin-bottom: 30px;
+
+      table {
+        &.table {
+          thead {
+            tr {
+              background-color: $color06;
+
+              th {
+                text-align: center !important;
+                color: #fff;
+                font-size: 16px;
+              }
+            }
+          }
+
+          tbody {
+            td {
+              text-align: center;
+              font-size: 16px;
+              color: #000;
+
+              .custom-check {
+                margin-bottom: 0;
+
+                .checkmark {
+                  left: calc(50% - 7px);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/** nomini popup start **/
+.modal-header{
+  &._nominee-head{
+  padding: 0;
+}
+}
+
+._popup-nomini {
+  // width: 650px;
+  // margin: 0 auto 20px;
+  // border: 1px solid $color06;
+
+  .top-detail {
+    background-color: $color06;
+    background-image: url("#{$imgpath}pop-bg.png");
+    display: flex;
+    padding: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 30px;
+    position: relative;
+    &::before{
+        position: absolute;
+        content: "";
+        @include triangle (40px, $color06, down);
+        bottom: -20px;
+        left: calc(50% - 10px);
+    }
+
+    .form-group {
+      margin: 5px 0;
+    }
+
+    .detail-txt {
+      padding-left: 25px;
+
+      p {
+        color: $white;
+        font-size: 16px;
+        margin: 0;
+        font-family:$font-regular;
+        strong{
+            font-family: $font-bold;
+        }
+      }
+    }
+
+    .custom-check {
+      .checkmark {
+        width: 30px !important;
+        height: 30px !important;
+        background-color: transparent !important;
+        border: 2px solid #75688f;
+        border-radius: 5px;
+        &:after {
+            width: 8px;
+            height: 15px;
+            left: 9px;
+            top: 3px;
+          border-color: $white;
+        }
+      }
+    }
+  }
+
+  .pin-area {
+    margin-bottom: 30px;
+    margin-top: 50px;
+    display: table;
+    p{
+      font-weight: 600;
+    color: $black;
+    font-size: 16px;
+    margin-bottom: 30px;
+    }
+    input {
+        &.form-control{
+      background-color: $color10;
+      width: 260px;
+      margin: 0 auto 5px;
+      height: 60px;
+      line-height: 60px;
+      display: block;
+      border: 1px dashed #6d6d6d;
+      font-size: 20px;
+      font-family: $font-bold;
+      color: $color01;
+      text-align: center;
+      border-radius: 0;
+      &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #ddd;
+        opacity: 1; /* Firefox */
+        font-family: $font-regular;
+      }
+    }
+    }
+
+    .pop-btns {
+      display: inline-block;
+      margin: 30px 15px;
+      a{
+        padding: 3px 20px;
+      }
+      input {
+        width: 165px;
+        padding: 4px 15px;
+        border-radius: 4px;
+        color: $white;
+      }
+    }
+  }
+}
+/** nomini popup end **/
