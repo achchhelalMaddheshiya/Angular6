@@ -18,6 +18,7 @@ export const APP_DI_CONFIG: AppConfig = {
 //     apiEndpoint: 'http://willodiaryserver.ignivastaging.com/api/',
 //     apiAssetsUrl: 'http://willodiaryserver.ignivastaging.com/'
 };
+
 @NgModule({
   imports: [
     CommonModule
